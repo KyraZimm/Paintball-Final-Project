@@ -6,10 +6,13 @@
     <e p="C:\Users\kyraz\Documents\Unity Projects\Paintball-Final-Project" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Grid.cs" t="Include" />
-        <e p="PAthfindingTest.cs" t="Include" />
-        <e p="PathNodeTest.cs" t="Include" />
-        <e p="Testing.cs" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="GameManager.cs" t="Include" />
+          <e p="Grid.cs" t="Include" />
+          <e p="MouseBehavior.cs" t="Include" />
+          <e p="Pathfinding.cs" t="Include" />
+          <e p="PathNode.cs" t="Include" />
+        </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
