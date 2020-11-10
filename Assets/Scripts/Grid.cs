@@ -33,7 +33,7 @@ public class Grid<TGridObject>
          for (int y = 0; y < gridArray.GetLength(1); y++)
          {
             //debug
-            Debug.Log(x + ", " + y);
+            //Debug.Log(x + ", " + y);
             Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y+1), Color.white, 100f);
             Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
             

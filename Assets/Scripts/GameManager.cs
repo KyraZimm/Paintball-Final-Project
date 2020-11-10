@@ -5,12 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    private Grid grid;
+    private Pathfinding playerPathfinder;
     
     void Start()
     {
         //initialize pathfinding
-        Pathfinding _pathfinding = new Pathfinding(10, 10);
+        playerPathfinder = new Pathfinding(10, 10);
+        
+        //function to check for obstacles, take them out of pathfinding
        
     }
 
