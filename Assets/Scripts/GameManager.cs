@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     private Pathfinding playerPathfinder;
     
     void Start()
@@ -20,15 +20,19 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-           
+            Vector3 mouseWorldPosition = GetMouseWorldPosition();
+            playerPathfinder.GetGrid().GetXY(GetMouseWorldPosition(), out int x, out int y);
+            List<PathNode> path = playerPathfinder.FindPath(0, 0, x, y);
+            if (path != null)
+            {
+                for (int i = 0; i < path.Count - 1; i++)
+                {
+                    Debug.DrawLine(new Vector3(path[i].x, path[i].y) * 10f + Vector3.one * 5f, new Vector3(path[i + 1].x, path[i + 1].y) * 10f + Vector3.one * 5f, Color.green, 100f);
+                }
+            }
         }
     }
-
+    
     //mouse position functions
     public static Vector3 GetMouseWorldPosition()
     {
