@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private Pathfinding playerPathfinder;
+    private Pathfinding pathfinder;
+    private PlayerMovement player;
     
     void Start()
     {
         //initialize pathfinding
-        playerPathfinder = new Pathfinding(10, 10);
+        pathfinder = new Pathfinding(10, 10);
         
+        //locate player
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
         //function to check for obstacles, take them out of pathfinding
-       
+
     }
 
     void Update()
@@ -21,15 +25,22 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorldPosition = GetMouseWorldPosition();
-            playerPathfinder.GetGrid().GetXY(GetMouseWorldPosition(), out int x, out int y);
-            List<PathNode> path = playerPathfinder.FindPath(0, 0, x, y);
+            Debug.Log(mouseWorldPosition);
+            
+            pathfinder.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
+            Debug.Log("get XY:" + x + ", " + y);
+            
+            List<PathNode> path = pathfinder.FindPath(0, 0, x, y);
             if (path != null)
             {
                 for (int i = 0; i < path.Count - 1; i++)
                 {
-                    Debug.DrawLine(new Vector3(path[i].x, path[i].y) * 10f + Vector3.one * 5f, new Vector3(path[i + 1].x, path[i + 1].y) * 10f + Vector3.one * 5f, Color.green, 100f);
+                    Debug.Log("path node " + i + ": " + path[i]);
+                    Debug.DrawLine(new Vector3(path[i].x, path[i].y) + Vector3.one, new Vector3(path[i + 1].x, path[i + 1].y) + Vector3.one, Color.green, 100f);
                 }
             }
+            
+            player.SetTargetPosition(mouseWorldPosition);
         }
     }
     

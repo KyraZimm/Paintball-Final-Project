@@ -9,16 +9,17 @@ public class Pathfinding
    private const int MOVE_STRAIGHT_COST = 10;
    private const int MOVE_DIAGONAL_COST = 14;
    
-   public static Pathfinding Instance { get; private set; }
 
    private Grid<PathNode> grid;
    private List<PathNode> openList;
    private List<PathNode> closedList;
    
+   public static Pathfinding Instance { get; private set; }
+   
    public Pathfinding(int width, int height)
    {
       Instance = this;
-      grid = new Grid<PathNode>(width, height, 2f, Vector2.zero, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
+      grid = new Grid<PathNode>(width, height, 1f, Vector2.zero, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
    }
 
    public Grid<PathNode> GetGrid()
@@ -59,6 +60,9 @@ public class Pathfinding
             pathNode.gCost = 99999999;
             pathNode.CalculateFCost();
             pathNode.cameFromNode = null;
+            
+            //delete this later:
+            pathNode.isWalkable = true;
          }
       }
 
@@ -80,6 +84,11 @@ public class Pathfinding
          foreach (PathNode neighborNode in GetNeighborList(currentNode))
          {
             if (closedList.Contains(neighborNode)) continue;
+            if (!neighborNode.isWalkable)
+            {
+               closedList.Add(neighborNode);
+               continue;
+            }
 
             if (neighborNode == null)
             {
@@ -113,51 +122,23 @@ public class Pathfinding
       {
          neighborList.Add(GetNode(currentNode.x - 1, currentNode.y));
          if (currentNode.y - 1 >= 0) neighborList.Add(GetNode(currentNode.x - 1, currentNode.y - 1));
-         if (currentNode.y + 1 < grid.gridArray.GetLength(1)) neighborList.Add(GetNode(currentNode.x - 1, currentNode. y + 1));
+         if (currentNode.y + 1 < grid.GetHeight()) neighborList.Add(GetNode(currentNode.x - 1, currentNode. y + 1));
       }
 
       if (currentNode.x + 1 < grid.gridArray.GetLength(0))
       {
          neighborList.Add(GetNode(currentNode.x + 1, currentNode.y));
          if (currentNode.y - 1 >= 0) neighborList.Add(GetNode(currentNode.x + 1, currentNode.y - 1));
-         if (currentNode.y + 1 < grid.gridArray.GetLength(1)) neighborList.Add(GetNode(currentNode.x + 1, currentNode. y + 1));
+         if (currentNode.y + 1 < grid.GetWidth()) neighborList.Add(GetNode(currentNode.x + 1, currentNode. y + 1));
       }
       if (currentNode.y - 1 >= 0) neighborList.Add(GetNode(currentNode.x, currentNode.y - 1));
-      if (currentNode.y + 1 < grid.gridArray.GetLength(1)) neighborList.Add(GetNode(currentNode.x, currentNode.y + 1));
+      if (currentNode.y + 1 < grid.GetHeight()) neighborList.Add(GetNode(currentNode.x, currentNode.y + 1));
 
       return neighborList;
    }
 
   
-   //other person's code:
-   /*
-   private List<PathNode> GetNeighbourList(PathNode currentNode) {
-      List<PathNode> neighbourList = new List<PathNode>();
 
-      if (currentNode.x - 1 >= 0) {
-         // Left
-         neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y));
-         // Left Down
-         if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y - 1));
-         // Left Up
-         if (currentNode.y + 1 < grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.y + 1));
-      }
-      if (currentNode.x + 1 < grid.GetWidth()) {
-         // Right
-         neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y));
-         // Right Down
-         if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y - 1));
-         // Right Up
-         if (currentNode.y + 1 < grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y + 1));
-      }
-      // Down
-      if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
-      // Up
-      if (currentNode.y + 1 < grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
-
-      return neighbourList;
-   }
-   */
    
    private PathNode GetNode(int x, int y)
    {
@@ -180,9 +161,6 @@ public class Pathfinding
 
    private int CalculateDistanceCost(PathNode a, PathNode b)
    {
-      Debug.Log(b);
-      //Debug.Log(a.x + ", " + a.y);
-      //Debug.Log(b.x + ", " + b.y);
       int xDistance = Mathf.Abs(a.x - b.x);
       int yDistance = Mathf.Abs(a.y - b.y);
       int remaining = Mathf.Abs(xDistance - yDistance);
