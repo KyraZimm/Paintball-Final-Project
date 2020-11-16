@@ -12,7 +12,7 @@ public class PathNode
     public int hCost;
     public int fCost;
 
-    public bool isWalkable;
+    public bool isWalkable = true;
 
     public PathNode cameFromNode;
     

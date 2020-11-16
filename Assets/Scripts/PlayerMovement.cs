@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector3 targetPos;
+    private Vector3 targetPosition;
     private Vector3 currentPos;
     private List<Vector3> playerPath;
     private int currentPathIndex;
     private float speed = 5;
-    
-    
-    
+
+    private bool movementAllowed = false;
+
+    public Vector3 markerPosition;
+
     void Start()
     {
         currentPos = transform.position;
@@ -20,11 +22,12 @@ public class PlayerMovement : MonoBehaviour
    
     void Update()
     {
-        HandleMovement();
-
-        if (Input.GetMouseButtonDown(0)) {
-            SetTargetPosition(GameManager.GetMouseWorldPosition());
+        if (Input.GetMouseButton(1))
+        {
+            SetTargetPosition(markerPosition);
         }
+        
+        HandleMovement();
     }
 
     private void HandleMovement()
@@ -35,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
             if (Vector3.Distance(transform.position, targetPosition) > 1f) {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
-                float distanceBefore = Vector3.Distance(transform.position, targetPosition);
-                transform.position = transform.position + moveDir * speed * Time.deltaTime;
+                transform.position = transform.position + (moveDir * speed * Time.deltaTime);
+                
             } else {
                 currentPathIndex++;
                 if (currentPathIndex >= playerPath.Count) {
@@ -58,7 +61,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetTargetPosition(Vector3 targetPosition) {
         currentPathIndex = 0;
         playerPath = Pathfinding.Instance.FindPath(GetPosition(), targetPosition);
-
+        
+        //temporary fix for final pathnode:
+        //Vector3 finalNode = GameManager.GetMouseWorldPosition();
+        //playerPath.Add(finalNode);
+        
         if (playerPath != null && playerPath.Count > 1) {
             playerPath.RemoveAt(0);
         }

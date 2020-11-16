@@ -38,7 +38,7 @@ public class Pathfinding
       else {
          List<Vector3> vectorPath = new List<Vector3>();
          foreach (PathNode pathNode in path) {
-            vectorPath.Add(new Vector3(pathNode.x, pathNode.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * .5f); 
+            vectorPath.Add(new Vector3(pathNode.x, pathNode.y) * grid.GetCellSize() + (Vector3.one * grid.GetCellSize() * .5f)); 
          }
          
          return vectorPath;
@@ -60,9 +60,6 @@ public class Pathfinding
             pathNode.gCost = 99999999;
             pathNode.CalculateFCost();
             pathNode.cameFromNode = null;
-            
-            //delete this later:
-            pathNode.isWalkable = true;
          }
       }
 
@@ -137,10 +134,7 @@ public class Pathfinding
       return neighborList;
    }
 
-  
-
-   
-   private PathNode GetNode(int x, int y)
+   public PathNode GetNode(int x, int y)
    {
       return grid.GetGridObj(x, y);
    }

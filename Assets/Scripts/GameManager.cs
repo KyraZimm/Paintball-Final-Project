@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     private Pathfinding pathfinder;
     private PlayerMovement player;
+
+    private bool checkedObstacles = false;
     
     void Start()
     {
@@ -22,26 +24,40 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!checkedObstacles)
+        {
+            int obstacles = LayerMask.GetMask("Obstacles");
+            float distToEdge = pathfinder.GetGrid().GetCellSize()/2;
+
+            for (int x = 0; x < pathfinder.GetGrid().GetWidth(); x++)
+            {
+                for (int y = 0; y < pathfinder.GetGrid().GetHeight(); y++)
+                {
+                    RaycastHit2D checkObstacleUp =  Physics2D.Raycast(new Vector2((x*distToEdge*2), (y*distToEdge*2)), Vector2.up, distToEdge, obstacles);
+
+                    if (checkObstacleUp.collider != null)
+                    {
+                        pathfinder.GetNode(x, y).isWalkable = false;
+                    }
+                }
+            }
+        }
+        
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorldPosition = GetMouseWorldPosition();
-            Debug.Log(mouseWorldPosition);
-            
             pathfinder.GetGrid().GetXY(mouseWorldPosition, out int x, out int y);
-            Debug.Log("get XY:" + x + ", " + y);
             
             List<PathNode> path = pathfinder.FindPath(0, 0, x, y);
             if (path != null)
             {
                 for (int i = 0; i < path.Count - 1; i++)
                 {
-                    Debug.Log("path node " + i + ": " + path[i]);
                     Debug.DrawLine(new Vector3(path[i].x, path[i].y) + Vector3.one, new Vector3(path[i + 1].x, path[i + 1].y) + Vector3.one, Color.green, 100f);
                 }
             }
-            
-            player.SetTargetPosition(mouseWorldPosition);
-        }
+        }*/
     }
     
     //mouse position functions
