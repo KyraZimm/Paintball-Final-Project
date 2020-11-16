@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //initialize pathfinding
-        pathfinder = new Pathfinding(10, 10);
+        pathfinder = new Pathfinding(20, 11);
         
         //locate player
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();

@@ -11,7 +11,7 @@ public class MovementMarker : MonoBehaviour, IDragHandler
 
     void Start()
     {
-        player = GetComponentInParent<PlayerMovement>();
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     void Update()
