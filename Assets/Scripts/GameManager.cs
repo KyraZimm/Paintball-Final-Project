@@ -24,23 +24,32 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        
+        //check to see where obstacles are on map, and mark those as nodes to skip
         if (!checkedObstacles)
         {
             int obstacles = LayerMask.GetMask("Obstacles");
             float distToEdge = pathfinder.GetGrid().GetCellSize()/2;
+            float cellSize = pathfinder.GetGrid().GetCellSize();
 
             for (int x = 0; x < pathfinder.GetGrid().GetWidth(); x++)
             {
                 for (int y = 0; y < pathfinder.GetGrid().GetHeight(); y++)
                 {
-                    RaycastHit2D checkObstacleUp =  Physics2D.Raycast(new Vector2((x*distToEdge*2), (y*distToEdge*2)), Vector2.up, distToEdge, obstacles);
+                    RaycastHit2D checkObstacleUp =  Physics2D.Raycast(new Vector2(((x*cellSize) + distToEdge), ((y*cellSize) + distToEdge)), Vector2.up*distToEdge, obstacles);
+                    Debug.DrawRay(new Vector2(((x*cellSize) + distToEdge), ((y*cellSize) + distToEdge)), Vector2.up * distToEdge, Color.red, 100f);
 
+                    Debug.Log(checkObstacleUp.collider);
+                    
                     if (checkObstacleUp.collider != null)
                     {
                         pathfinder.GetNode(x, y).isWalkable = false;
+                        Debug.Log("pathnode " + x + ", " + y + " is not walkable");
                     }
                 }
             }
+
+            checkedObstacles = true;
         }
         
         /*

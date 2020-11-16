@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerPath != null)
         {
             Vector3 targetPosition = playerPath[currentPathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > 1f) {
+            if (Vector3.Distance(transform.position, targetPosition) > 0.02f) {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
                 transform.position = transform.position + (moveDir * speed * Time.deltaTime);
