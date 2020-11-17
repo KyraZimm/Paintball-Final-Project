@@ -6,32 +6,34 @@ using UnityEngine;
 public class Autofire : MonoBehaviour
 {
 	public float radius;
-	public string enemyOrFriend;
+	public string enemyOrFriend; // "Enemy" or "Player Character"
 	GameObject target;
-	[SerializeField] FieldOfView fov;
-	void CheckTargetInRange()
+	[SerializeField] GameObject fov;
+	[SerializeField] LayerMask layerMask;
+
+	public void Fire(Vector2 point, GameObject target)
 	{
-		GameObject[] targets = GameObject.FindGameObjectsWithTag(enemyOrFriend);
-		foreach(GameObject target in targets)
-		{
-			float distToTarget = Vector2.Distance(transform.position, target.transform.position);
-			if (distToTarget < radius)
-			{
-				//if ()
-			}
-		}
 		
+		var dir = new Vector3(point.x, point.y, 0) - transform.position;
+		var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle+90, Vector3.forward);
+		// target receives damage
 	}
+
 	// Start is called before the first frame update
 	void Start()
 	{
+		fov = Instantiate(fov);
+		fov.GetComponent<FieldOfView>().layerMask = layerMask;
+		fov.GetComponent<FieldOfView>().autofire = this;
+
 
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		fov.SetOrigin(transform.position);
-		fov.SetAimDirection(transform.eulerAngles);
+		fov.GetComponent<FieldOfView>().SetOrigin(transform.position);
+		fov.GetComponent<FieldOfView>().SetAimDirection(transform.eulerAngles);
 	}
 }

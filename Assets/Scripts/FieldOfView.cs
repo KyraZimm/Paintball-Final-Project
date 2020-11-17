@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-	LayerMask layerMask;
+	public LayerMask layerMask;
+	public Autofire autofire;
 	Mesh mesh;
 	float startingAngle;
 	float fov;
@@ -47,7 +48,7 @@ public class FieldOfView : MonoBehaviour
 		for (int i = 0; i <= rayCount; i++)
 		{
 			Vector3 vertex;
-			RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance);
+			RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, layerMask);
 			if (raycastHit2D.collider == null)
 			{
 				// no hit
@@ -59,6 +60,10 @@ public class FieldOfView : MonoBehaviour
 				// hit object
 				Debug.DrawLine(origin, raycastHit2D.point);
 				vertex = raycastHit2D.point;
+				if (raycastHit2D.collider.gameObject.tag.Equals("Enemy"))
+				{
+					autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+				}
 			}
 			vertices[vertexIndex] = vertex;
 
@@ -86,7 +91,6 @@ public class FieldOfView : MonoBehaviour
 	}
 	public void SetAimDirection(Vector3 aimDirection)
 	{
-		//startingAngle = GetAngleFromVectorFloat(aimDirection) - fov / 2f;
 		startingAngle = aimDirection.z - fov / 2f;
 		Debug.Log(startingAngle);
 

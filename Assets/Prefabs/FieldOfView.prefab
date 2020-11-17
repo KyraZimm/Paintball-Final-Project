@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8817522779752189827}
   - component: {fileID: 1495299513417003180}
   - component: {fileID: 31749059333878358}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FieldOfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169029322315711047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.6, y: -2.08, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,6 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7807a6fe649cd7540a4237f1d3800110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: 90
-  viewDistance: 5
-  rayCount: 50
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
