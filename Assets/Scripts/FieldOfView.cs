@@ -29,8 +29,8 @@ public class FieldOfView : MonoBehaviour
 	void CreateFieldOfView()
 	{
 		
-		float viewDistance = 50f;
-		int rayCount = 50;
+		float viewDistance = 5f;
+		int rayCount = 10;
 		float angle = startingAngle;
 		
 		float angleIncrease = fov / rayCount;
@@ -60,10 +60,21 @@ public class FieldOfView : MonoBehaviour
 				// hit object
 				Debug.DrawLine(origin, raycastHit2D.point);
 				vertex = raycastHit2D.point;
-				if (raycastHit2D.collider.gameObject.tag.Equals("Enemy"))
+				if (autofire.gameObject.tag.Equals("Player Character"))
 				{
-					autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+					if (raycastHit2D.collider.gameObject.tag.Equals("Enemy"))
+					{
+						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+					}
 				}
+				if (autofire.gameObject.tag.Equals("Enemy"))
+				{
+					if (raycastHit2D.collider.gameObject.tag.Equals("Player Character"))
+					{
+						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+					}
+				}
+
 			}
 			vertices[vertexIndex] = vertex;
 
