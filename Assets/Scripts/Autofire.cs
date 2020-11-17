@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Autofire : MonoBehaviour
 {
-	public float radius;
-	public string enemyOrFriend; // "Enemy" or "Player Character"
-	GameObject target;
 	[SerializeField] GameObject fov;
 	[SerializeField] LayerMask layerMask;
 
