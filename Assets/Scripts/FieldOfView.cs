@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-
+	LayerMask layerMask;
 	Mesh mesh;
+	float startingAngle;
+	float fov;
+	Vector3 origin;
 	Vector3 GetVectorFromAngle(float angle)
 	{
 		// angle = 0 -> 360
 		float angleRad = angle * (Mathf.PI / 180f);
 		return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
 	}
+	float GetAngleFromVectorFloat(Vector3 dir)
+	{
+		dir = dir.normalized;
+		float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		if (n < 0)
+		{
+			n += 360;
+		}
+		return n;
+	}
 	void CreateFieldOfView()
 	{
-		float fov = 90f;
+		
 		float viewDistance = 50f;
-		int rayCount = 20;
-		float angle = 0f;
-		Vector3 origin = transform.position;
+		int rayCount = 50;
+		float angle = startingAngle;
+		
 		float angleIncrease = fov / rayCount;
 
 		Vector3[] vertices = new Vector3[rayCount + 1 + 1];
@@ -66,15 +79,29 @@ public class FieldOfView : MonoBehaviour
 		mesh.uv = uv;
 		mesh.triangles = triangles;
 	}
+	public void SetOrigin(Vector3 origin)
+	{
+		this.origin = origin;
+
+	}
+	public void SetAimDirection(Vector3 aimDirection)
+	{
+		//startingAngle = GetAngleFromVectorFloat(aimDirection) - fov / 2f;
+		startingAngle = aimDirection.z - fov / 2f;
+		Debug.Log(startingAngle);
+
+	}
 	// Start is called before the first frame update
 	void Start()
 	{
 		mesh = new Mesh();
 		GetComponent<MeshFilter>().mesh = mesh;
+		fov = 90f;
+		Vector3 origin = transform.position;
 	}
 
 	// Update is called once per frame
-	void Update()
+	void LateUpdate()
 	{
 
 		CreateFieldOfView();

@@ -8,7 +8,7 @@ public class Autofire : MonoBehaviour
 	public float radius;
 	public string enemyOrFriend;
 	GameObject target;
-
+	[SerializeField] FieldOfView fov;
 	void CheckTargetInRange()
 	{
 		GameObject[] targets = GameObject.FindGameObjectsWithTag(enemyOrFriend);
@@ -31,5 +31,7 @@ public class Autofire : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		fov.SetOrigin(transform.position);
+		fov.SetAimDirection(transform.eulerAngles);
 	}
 }
