@@ -44,11 +44,12 @@ public class FieldOfView : MonoBehaviour
 		int vertexIndex = 1;
 		int triangleIndex = 0;
 
-
+		bool hit = false;
 		for (int i = 0; i <= rayCount; i++)
 		{
 			Vector3 vertex;
 			RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, layerMask);
+			
 			if (raycastHit2D.collider == null)
 			{
 				// no hit
@@ -60,22 +61,31 @@ public class FieldOfView : MonoBehaviour
 				// hit object
 				Debug.DrawLine(origin, raycastHit2D.point);
 				vertex = raycastHit2D.point;
-				if (autofire.gameObject.tag.Equals("Player Character"))
+				if (autofire.gameObject.tag.Equals("Player"))
 				{
 					if (raycastHit2D.collider.gameObject.tag.Equals("Enemy"))
 					{
+						if (!hit)
+						{
+							hit = true;
+						}
 						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
 					}
 				}
 				if (autofire.gameObject.tag.Equals("Enemy"))
 				{
-					if (raycastHit2D.collider.gameObject.tag.Equals("Player Character"))
+					if (raycastHit2D.collider.gameObject.tag.Equals("Player"))
 					{
+						if (!hit)
+						{
+							hit = true;
+						}
 						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
 					}
 				}
 
 			}
+
 			vertices[vertexIndex] = vertex;
 
 			if (i > 0)
@@ -91,6 +101,8 @@ public class FieldOfView : MonoBehaviour
 			angle -= angleIncrease;
 		}
 
+		autofire.isFiring = hit;
+
 		mesh.vertices = vertices;
 		mesh.uv = uv;
 		mesh.triangles = triangles;
@@ -102,8 +114,8 @@ public class FieldOfView : MonoBehaviour
 	}
 	public void SetAimDirection(Vector3 aimDirection)
 	{
-		startingAngle = aimDirection.z - fov / 2f;
-		Debug.Log(startingAngle);
+		startingAngle = aimDirection.z - fov / 2f + 180;
+		//Debug.Log(startingAngle);
 
 	}
 	// Start is called before the first frame update
