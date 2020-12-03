@@ -14,16 +14,25 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 markerPosition;
 
+    private LineRenderer pathVisual;
+
     void Start()
     {
         currentPos = transform.position;
+        pathVisual = gameObject.GetComponent<LineRenderer>();
     }
 
    
     void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            ShowPath(FetchPlannedPath(markerPosition));
+        }
+        
         if (Input.GetMouseButton(1))
         {
+            ClearPath();
             SetTargetPosition(markerPosition);
         }
         
@@ -73,5 +82,26 @@ public class PlayerMovement : MonoBehaviour
         if (playerPath != null && playerPath.Count > 1) {
             playerPath.RemoveAt(0);
         }
+    }
+
+    private List<Vector3> FetchPlannedPath(Vector3 targetPosition)
+    {
+        List<Vector3> plannedPath = Pathfinding.Instance.FindPath(GetPosition(), targetPosition);
+        return plannedPath;
+    }
+
+    private void ShowPath(List<Vector3> futurePath)
+    {
+        pathVisual.positionCount = futurePath.Count;
+
+        for (int i = 0; i < futurePath.Count; i++)
+        {
+            pathVisual.SetPosition(i, futurePath[i]);
+        }
+    }
+
+    private void ClearPath()
+    {
+        pathVisual.positionCount = 1;
     }
 }
