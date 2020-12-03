@@ -146,3 +146,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1591
+  hp: 100
+  damage: 10
+  accuracy: 0.5
+  cover: 0
+  isFiring: 0

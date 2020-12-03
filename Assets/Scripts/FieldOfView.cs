@@ -45,6 +45,8 @@ public class FieldOfView : MonoBehaviour
 		int triangleIndex = 0;
 
 		bool hit = false;
+		Vector3 firstTargetVertex;
+		GameObject firstTarget;
 		for (int i = 0; i <= rayCount; i++)
 		{
 			Vector3 vertex;
@@ -68,8 +70,11 @@ public class FieldOfView : MonoBehaviour
 						if (!hit)
 						{
 							hit = true;
+							firstTarget = raycastHit2D.collider.gameObject;
+							firstTargetVertex = vertex;
+							autofire.Fire(firstTargetVertex, firstTarget);
 						}
-						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+						
 					}
 				}
 				if (autofire.gameObject.tag.Equals("Enemy"))
@@ -79,8 +84,11 @@ public class FieldOfView : MonoBehaviour
 						if (!hit)
 						{
 							hit = true;
+							firstTarget = raycastHit2D.collider.gameObject;
+							firstTargetVertex = vertex;
+							autofire.Fire(firstTargetVertex, firstTarget);
 						}
-						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+						
 					}
 				}
 
@@ -102,6 +110,12 @@ public class FieldOfView : MonoBehaviour
 		}
 
 		autofire.isFiring = hit;
+		if (hit)
+		{
+			
+		}
+		
+
 
 		mesh.vertices = vertices;
 		mesh.uv = uv;

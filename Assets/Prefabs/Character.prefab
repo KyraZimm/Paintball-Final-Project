@@ -114,6 +114,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 2615
+  hp: 100
+  damage: 20
+  accuracy: 0.8
+  cover: 0.2
+  isFiring: 0
 --- !u!61 &1362649850
 BoxCollider2D:
   m_ObjectHideFlags: 0
