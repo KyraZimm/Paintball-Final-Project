@@ -39,7 +39,11 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
                 transform.position = transform.position + (moveDir * speed * Time.deltaTime);
-                
+                // Zeru's code: facing the marker
+                var dir = new Vector3(targetPosition.x, targetPosition.y, 0) - transform.position;
+                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+
             } else {
                 currentPathIndex++;
                 if (currentPathIndex >= playerPath.Count) {
