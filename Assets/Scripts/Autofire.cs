@@ -15,6 +15,11 @@ public class Autofire : MonoBehaviour
 	bool isDead;
 	public bool isFiring;
 
+	public float visibleTime;
+	public void SetVisible()
+	{
+		visibleTime = 3f;
+	}
 	public void Fire(Vector2 point, GameObject target)
 	{
 		isFiring = true;
@@ -27,7 +32,7 @@ public class Autofire : MonoBehaviour
 
 	public void DealDamage(Autofire target)
 	{
-		target.ReceiveDamage(damage * accuracy *Time.deltaTime, this);
+		target.ReceiveDamage(damage * accuracy * Time.deltaTime, this);
 
 	}
 	public void ReceiveDamage(float damage, Autofire source)
@@ -42,12 +47,22 @@ public class Autofire : MonoBehaviour
 		}
 	}
 
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		fov = Instantiate(fov);
 		fov.GetComponent<FieldOfView>().layerMask = layerMask;
 		fov.GetComponent<FieldOfView>().autofire = this;
+		if (tag == "Enemy")
+		{
+
+			fov.GetComponent<FieldOfView>().fov = 70f;
+			fov.GetComponent<MeshRenderer>().enabled = false;
+			fov.layer = LayerMask.NameToLayer("BehindMask");
+		}
+
+
 
 
 	}
@@ -57,6 +72,20 @@ public class Autofire : MonoBehaviour
 	{
 		fov.GetComponent<FieldOfView>().SetOrigin(transform.position);
 		fov.GetComponent<FieldOfView>().SetAimDirection(transform.eulerAngles);
-		Debug.Log(isFiring);
+		//Debug.Log(isFiring);
+
+		// masking
+		if (gameObject.tag == "Enemy")
+		{
+			if (visibleTime > 0)
+			{
+				gameObject.layer = LayerMask.NameToLayer("Enemy"); // set to visible
+				visibleTime -= Time.deltaTime;
+			}
+			else
+			{
+				gameObject.layer = LayerMask.NameToLayer("BehindMask"); // set to invisible
+			}
+		}
 	}
 }
