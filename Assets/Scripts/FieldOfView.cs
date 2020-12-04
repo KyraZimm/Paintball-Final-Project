@@ -8,7 +8,7 @@ public class FieldOfView : MonoBehaviour
 	public Autofire autofire;
 	Mesh mesh;
 	float startingAngle;
-	float fov;
+	public float fov = 70f;
 	Vector3 origin;
 	Vector3 GetVectorFromAngle(float angle)
 	{
@@ -29,8 +29,8 @@ public class FieldOfView : MonoBehaviour
 	void CreateFieldOfView()
 	{
 		
-		float viewDistance = 5f;
-		int rayCount = 10;
+		float viewDistance = 10f;
+		int rayCount = 50;
 		float angle = startingAngle;
 		
 		float angleIncrease = fov / rayCount;
@@ -47,6 +47,16 @@ public class FieldOfView : MonoBehaviour
 		bool hit = false;
 		Vector3 firstTargetVertex;
 		GameObject firstTarget;
+
+		/*// hide enemies in fog of war when not found
+		
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach(GameObject e in enemies)
+		{
+			e.layer = LayerMask.NameToLayer("BehindMask");
+		}*/
+		
+
 		for (int i = 0; i <= rayCount; i++)
 		{
 			Vector3 vertex;
@@ -74,6 +84,7 @@ public class FieldOfView : MonoBehaviour
 							firstTargetVertex = vertex;
 							autofire.Fire(firstTargetVertex, firstTarget);
 						}
+						raycastHit2D.collider.gameObject.GetComponent<Autofire>().SetVisible(); // take the enemy out of fog of war when found
 						
 					}
 				}
@@ -110,10 +121,6 @@ public class FieldOfView : MonoBehaviour
 		}
 
 		autofire.isFiring = hit;
-		if (hit)
-		{
-			
-		}
 		
 
 
@@ -137,7 +144,6 @@ public class FieldOfView : MonoBehaviour
 	{
 		mesh = new Mesh();
 		GetComponent<MeshFilter>().mesh = mesh;
-		fov = 90f;
 		Vector3 origin = transform.position;
 	}
 
