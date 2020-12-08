@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
 	private bool checkedObstacles = false;
 	public bool isPaused = false;
+	public List<PathNode> closedNodes;
 	void Start()
 	{
 		//initialize pathfinding
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
 					{
 						pathfinder.GetNode(x, y).isWalkable = false;
 						Debug.Log("pathnode " + x + ", " + y + " is not walkable");
+						closedNodes.Add(pathfinder.GetNode(x, y));
 					}
 				}
 			}

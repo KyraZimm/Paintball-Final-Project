@@ -14,12 +14,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 markerPosition;
 
+    private Vector2 groundHeight, groundWidth;
+    
+
     private LineRenderer pathVisual;
 
     void Start()
     {
         currentPos = transform.position;
         pathVisual = gameObject.GetComponent<LineRenderer>();
+        
+        groundHeight = new Vector2(0, 5);
+        groundWidth = new Vector2(0, 10);
     }
 
    
@@ -37,6 +43,19 @@ public class PlayerMovement : MonoBehaviour
         }
         
         HandleMovement();
+    }
+
+    private bool CheckMarkerBoundaries(Vector3 markerPos)
+    {
+        //check whether marker is off-screen
+        if (markerPos.x >= groundWidth.y || markerPos.x <= groundWidth.y || markerPos.y >= groundHeight.y || markerPos.y <= groundHeight.x)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void HandleMovement()
