@@ -7,12 +7,8 @@ using UnityEngine.EventSystems;
 public class MovementMarker : MonoBehaviour, IDragHandler
 {
     [SerializeField] private RectTransform draggedRectTransform;
-    private PlayerMovement player;
+    public PlayerMovement player;
 
-    void Start()
-    {
-        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
-    }
 
     void Update()
     {
