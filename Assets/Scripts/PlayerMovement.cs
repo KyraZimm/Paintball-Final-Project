@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,20 +14,48 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 markerPosition;
 
+    private Vector2 groundHeight, groundWidth;
+    
+
+    private LineRenderer pathVisual;
+
     void Start()
     {
         currentPos = transform.position;
+        pathVisual = gameObject.GetComponent<LineRenderer>();
+        
+        groundHeight = new Vector2(0, 5);
+        groundWidth = new Vector2(0, 10);
     }
 
    
     void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            ShowPath(FetchPlannedPath(markerPosition));
+        }
+        
         if (Input.GetMouseButton(1))
         {
+            ClearPath();
             SetTargetPosition(markerPosition);
         }
         
         HandleMovement();
+    }
+
+    private bool CheckMarkerBoundaries(Vector3 markerPos)
+    {
+        //check whether marker is off-screen
+        if (markerPos.x >= groundWidth.y || markerPos.x <= groundWidth.y || markerPos.y >= groundHeight.y || markerPos.y <= groundHeight.x)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void HandleMovement()
@@ -73,5 +101,26 @@ public class PlayerMovement : MonoBehaviour
         if (playerPath != null && playerPath.Count > 1) {
             playerPath.RemoveAt(0);
         }
+    }
+
+    private List<Vector3> FetchPlannedPath(Vector3 targetPosition)
+    {
+        List<Vector3> plannedPath = Pathfinding.Instance.FindPath(GetPosition(), targetPosition);
+        return plannedPath;
+    }
+
+    private void ShowPath(List<Vector3> futurePath)
+    {
+        pathVisual.positionCount = futurePath.Count;
+
+        for (int i = 0; i < futurePath.Count; i++)
+        {
+            pathVisual.SetPosition(i, futurePath[i]);
+        }
+    }
+
+    private void ClearPath()
+    {
+        pathVisual.positionCount = 1;
     }
 }

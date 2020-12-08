@@ -14,16 +14,13 @@ TagManager:
   - UI
   - 
   - 
-
+  - 
   - Obstacle
   - Player Character
   - Enemy
-
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Mask
+  - BehindMask
+  - Black
   - 
   - 
   - 
