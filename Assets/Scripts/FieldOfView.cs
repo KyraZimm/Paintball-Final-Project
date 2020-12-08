@@ -8,7 +8,7 @@ public class FieldOfView : MonoBehaviour
 	public Autofire autofire;
 	Mesh mesh;
 	float startingAngle;
-	float fov;
+	public float fov = 70f;
 	Vector3 origin;
 	Vector3 GetVectorFromAngle(float angle)
 	{
@@ -29,8 +29,8 @@ public class FieldOfView : MonoBehaviour
 	void CreateFieldOfView()
 	{
 		
-		float viewDistance = 5f;
-		int rayCount = 10;
+		float viewDistance = 10f;
+		int rayCount = 50;
 		float angle = startingAngle;
 		
 		float angleIncrease = fov / rayCount;
@@ -44,11 +44,24 @@ public class FieldOfView : MonoBehaviour
 		int vertexIndex = 1;
 		int triangleIndex = 0;
 
+		bool hit = false;
+		Vector3 firstTargetVertex;
+		GameObject firstTarget;
+
+		/*// hide enemies in fog of war when not found
+		
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach(GameObject e in enemies)
+		{
+			e.layer = LayerMask.NameToLayer("BehindMask");
+		}*/
+		
 
 		for (int i = 0; i <= rayCount; i++)
 		{
 			Vector3 vertex;
 			RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, layerMask);
+			
 			if (raycastHit2D.collider == null)
 			{
 				// no hit
@@ -60,22 +73,38 @@ public class FieldOfView : MonoBehaviour
 				// hit object
 				Debug.DrawLine(origin, raycastHit2D.point);
 				vertex = raycastHit2D.point;
-				if (autofire.gameObject.tag.Equals("Player Character"))
+				if (autofire.gameObject.tag.Equals("Player"))
 				{
 					if (raycastHit2D.collider.gameObject.tag.Equals("Enemy"))
 					{
-						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+						if (!hit)
+						{
+							hit = true;
+							firstTarget = raycastHit2D.collider.gameObject;
+							firstTargetVertex = vertex;
+							autofire.Fire(firstTargetVertex, firstTarget);
+						}
+						raycastHit2D.collider.gameObject.GetComponent<Autofire>().SetVisible(); // take the enemy out of fog of war when found
+						
 					}
 				}
 				if (autofire.gameObject.tag.Equals("Enemy"))
 				{
-					if (raycastHit2D.collider.gameObject.tag.Equals("Player Character"))
+					if (raycastHit2D.collider.gameObject.tag.Equals("Player"))
 					{
-						autofire.Fire(vertex, raycastHit2D.collider.gameObject);
+						if (!hit)
+						{
+							hit = true;
+							firstTarget = raycastHit2D.collider.gameObject;
+							firstTargetVertex = vertex;
+							autofire.Fire(firstTargetVertex, firstTarget);
+						}
+						
 					}
 				}
 
 			}
+
 			vertices[vertexIndex] = vertex;
 
 			if (i > 0)
@@ -91,6 +120,10 @@ public class FieldOfView : MonoBehaviour
 			angle -= angleIncrease;
 		}
 
+		autofire.isFiring = hit;
+		
+
+
 		mesh.vertices = vertices;
 		mesh.uv = uv;
 		mesh.triangles = triangles;
@@ -102,8 +135,8 @@ public class FieldOfView : MonoBehaviour
 	}
 	public void SetAimDirection(Vector3 aimDirection)
 	{
-		startingAngle = aimDirection.z - fov / 2f;
-		Debug.Log(startingAngle);
+		startingAngle = aimDirection.z - fov / 2f + 180;
+		//Debug.Log(startingAngle);
 
 	}
 	// Start is called before the first frame update
@@ -111,7 +144,6 @@ public class FieldOfView : MonoBehaviour
 	{
 		mesh = new Mesh();
 		GetComponent<MeshFilter>().mesh = mesh;
-		fov = 90f;
 		Vector3 origin = transform.position;
 	}
 

@@ -5,54 +5,60 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private Pathfinding pathfinder;
-    private PlayerMovement player;
+	private Pathfinding pathfinder;
+	private PlayerMovement player;
 
-    private bool checkedObstacles = false;
-    
-    void Start()
-    {
-        //initialize pathfinding
-        pathfinder = new Pathfinding(20, 11);
-        
-        //locate player
-        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+	private bool checkedObstacles = false;
+	public bool isPaused = false;
+	void Start()
+	{
+		//initialize pathfinding
+		pathfinder = new Pathfinding(20, 11);
 
-        //function to check for obstacles, take them out of pathfinding
+		//locate player
+		player = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-    }
+		//function to check for obstacles, take them out of pathfinding
 
-    void Update()
-    {
-        
-        //check to see where obstacles are on map, and mark those as nodes to skip
-        if (!checkedObstacles)
-        {
-            int obstacles = LayerMask.GetMask("Obstacles");
-            float distToEdge = pathfinder.GetGrid().GetCellSize()/2;
-            float cellSize = pathfinder.GetGrid().GetCellSize();
+	}
 
-            for (int x = 0; x < pathfinder.GetGrid().GetWidth(); x++)
-            {
-                for (int y = 0; y < pathfinder.GetGrid().GetHeight(); y++)
-                {
-                    RaycastHit2D checkObstacleUp =  Physics2D.Raycast(new Vector2(((x*cellSize) + distToEdge), ((y*cellSize) + distToEdge)), Vector2.up*distToEdge, obstacles);
-                    Debug.DrawRay(new Vector2(((x*cellSize) + distToEdge), ((y*cellSize) + distToEdge)), Vector2.up * distToEdge, Color.red, 100f);
+	void Update()
+	{
 
-                    Debug.Log(checkObstacleUp.collider);
-                    
-                    if (checkObstacleUp.collider != null)
-                    {
-                        pathfinder.GetNode(x, y).isWalkable = false;
-                        Debug.Log("pathnode " + x + ", " + y + " is not walkable");
-                    }
-                }
-            }
+		//check to see where obstacles are on map, and mark those as nodes to skip
+		if (!checkedObstacles)
+		{
+			int obstacles = LayerMask.GetMask("Obstacles");
+			float distToEdge = pathfinder.GetGrid().GetCellSize() / 2;
+			float cellSize = pathfinder.GetGrid().GetCellSize();
 
-            checkedObstacles = true;
-        }
-        
-        /*
+			for (int x = 0; x < pathfinder.GetGrid().GetWidth(); x++)
+			{
+				for (int y = 0; y < pathfinder.GetGrid().GetHeight(); y++)
+				{
+					RaycastHit2D checkObstacleUp = Physics2D.Raycast(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.up * distToEdge, obstacles);
+					Debug.DrawRay(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.up * distToEdge, Color.red, 100f);
+
+					Debug.Log(checkObstacleUp.collider);
+
+					if (checkObstacleUp.collider != null)
+					{
+						pathfinder.GetNode(x, y).isWalkable = false;
+						Debug.Log("pathnode " + x + ", " + y + " is not walkable");
+					}
+				}
+			}
+
+			checkedObstacles = true;
+
+
+
+
+
+
+		}
+
+		/*
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorldPosition = GetMouseWorldPosition();
@@ -67,26 +73,43 @@ public class GameManager : MonoBehaviour
                 }
             }
         }*/
-    }
-    
-    //mouse position functions
-    public static Vector3 GetMouseWorldPosition()
-    {
-        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-        vec.z = 0f;
-        return vec;
-    }
-    public static Vector3 GetMouseWorldPositionWithZ()
-    {
-        return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-    }
-    public static Vector3 GetMouseWorldPositionWithZ(Camera worldCamera)
-    {
-        return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
-    }
-    public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
-    {
-        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
-        return worldPosition;
-    }
+
+
+		// pause game
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+
+			isPaused = !isPaused;
+			if (isPaused)
+			{
+				Time.timeScale = 0f;
+			}
+			else if (!isPaused)
+			{
+				Time.timeScale = 1f;
+			}
+		}
+	}
+
+	//mouse position functions
+	public static Vector3 GetMouseWorldPosition()
+	{
+		Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+		vec.z = 0f;
+		return vec;
+	}
+	public static Vector3 GetMouseWorldPositionWithZ()
+	{
+		return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+	}
+	public static Vector3 GetMouseWorldPositionWithZ(Camera worldCamera)
+	{
+		return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
+	}
+	public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
+	{
+		Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
+		return worldPosition;
+	}
+
 }

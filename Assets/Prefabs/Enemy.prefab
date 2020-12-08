@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7655770926805742213}
   - component: {fileID: 293163609}
   - component: {fileID: 293163608}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -146,3 +146,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1591
+  hp: 100
+  damage: 20
+  accuracy: 0.5
+  cover: 0
+  isFiring: 0
+  visibleTime: 0
