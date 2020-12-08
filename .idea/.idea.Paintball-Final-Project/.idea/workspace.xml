@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92e5cace-2add-4511-899a-0195597d627c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="92e5cace-2add-4511-899a-0195597d627c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +113,7 @@
       <workItem from="1606956736082" duration="570000" />
       <workItem from="1606980731191" duration="2033000" />
       <workItem from="1607021644332" duration="802000" />
-      <workItem from="1607379819449" duration="639000" />
+      <workItem from="1607379819449" duration="640000" />
     </task>
     <servers />
   </component>
