@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cb798f32d32e14688e3e83ce1ab481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
 --- !u!4 &312103079
 Transform:
   m_ObjectHideFlags: 0
@@ -569,7 +570,7 @@ GameObject:
   - component: {fileID: 1432643727}
   - component: {fileID: 1432643726}
   - component: {fileID: 1432643728}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: TestObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
