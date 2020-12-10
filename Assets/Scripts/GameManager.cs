@@ -6,20 +6,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	private Pathfinding pathfinder;
-	private PlayerMovement player;
 
 	private bool checkedObstacles = false;
 	public bool isPaused = false;
-	public List<PathNode> closedNodes;
+	public List<PathNode> closedNodes = new List<PathNode>();
 	void Start()
 	{
 		//initialize pathfinding
 		pathfinder = new Pathfinding(20, 11);
 
-		//locate player
-		player = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-		//function to check for obstacles, take them out of pathfinding
+		//initialize closed nodes list
+		print(closedNodes);
 
 	}
 
@@ -52,10 +50,6 @@ public class GameManager : MonoBehaviour
 			}
 
 			checkedObstacles = true;
-
-
-
-
 
 
 		}
