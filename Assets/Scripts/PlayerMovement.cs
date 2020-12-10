@@ -14,12 +14,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 markerPosition;
 
+    private Vector2 groundHeight, groundWidth;
+    
+
     private LineRenderer pathVisual;
 
     void Start()
     {
         currentPos = transform.position;
         pathVisual = gameObject.GetComponent<LineRenderer>();
+        
+        groundHeight = new Vector2(0, 5);
+        groundWidth = new Vector2(0, 10);
     }
 
    
@@ -39,21 +45,39 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
     }
 
+    private bool CheckMarkerBoundaries(Vector3 markerPos)
+    {
+        //check whether marker is off-screen
+        if (markerPos.x >= groundWidth.y || markerPos.x <= groundWidth.y || markerPos.y >= groundHeight.y || markerPos.y <= groundHeight.x)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     private void HandleMovement()
     {
         if (playerPath != null)
         {
             Vector3 targetPosition = playerPath[currentPathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > 0.02f) {
+            if (Vector3.Distance(transform.position, targetPosition) > 0.2f) 
+            {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
 
                 transform.position = transform.position + (moveDir * speed * Time.deltaTime);
                 // Zeru's code: facing the marker
-                var dir = new Vector3(targetPosition.x, targetPosition.y, 0) - transform.position;
-                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+                if (!gameObject.GetComponent<Autofire>().isFiring)
+                {
+                    var dir = new Vector3(targetPosition.x, targetPosition.y, 0) - transform.position;
+                    var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+                }
 
-            } else {
+            } 
+            else {
                 currentPathIndex++;
                 if (currentPathIndex >= playerPath.Count) {
                     StopMoving();
