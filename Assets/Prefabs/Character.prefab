@@ -118,6 +118,8 @@ MonoBehaviour:
   damage: 40
   accuracy: 0.8
   cover: 0.2
+  deathSprite: {fileID: 21300000, guid: 9b2f46739f1c07143bc47fedaaa170d3, type: 3}
+  isDead: 0
   isFiring: 0
 --- !u!61 &1362649850
 BoxCollider2D:
