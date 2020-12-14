@@ -150,5 +150,5 @@ MonoBehaviour:
   damage: 20
   accuracy: 0.5
   cover: 0
+  isDead: 0
   isFiring: 0
-  visibleTime: 0
