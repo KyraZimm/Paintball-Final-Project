@@ -8,6 +8,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Autofire.cs" t="Include" />
+          <e p="BarMove.cs" t="Include" />
           <e p="FieldOfView.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Grid.cs" t="Include" />

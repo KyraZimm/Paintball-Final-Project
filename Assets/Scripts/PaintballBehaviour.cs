@@ -18,7 +18,7 @@ public class PaintballBehaviour : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
 
-        float speed = 1f;
+        float speed = 3f;
         float dx = target.transform.position.x - gameObject.transform.position.x;
         float dy = target.transform.position.y - gameObject.transform.position.y;
         Vector2 magnitude = new Vector2(dx, dy);
