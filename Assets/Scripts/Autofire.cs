@@ -95,6 +95,7 @@ public class Autofire : MonoBehaviour
 
 			Destroy(fov);
 			GetComponent<SpriteRenderer>().sprite = deathSprite;
+			GetComponent<Animator>().enabled = false;
 			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 		}
 	}
@@ -118,8 +119,12 @@ public class Autofire : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		fov.GetComponent<FieldOfView>().SetOrigin(transform.position);
-		fov.GetComponent<FieldOfView>().SetAimDirection(transform.eulerAngles);
+		if (fov!=null)
+		{
+			fov.GetComponent<FieldOfView>().SetOrigin(transform.position);
+			fov.GetComponent<FieldOfView>().SetAimDirection(transform.eulerAngles);
+		}
+		
 		//Debug.Log(isFiring);
 
 		// masking

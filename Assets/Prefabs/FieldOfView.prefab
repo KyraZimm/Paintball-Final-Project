@@ -94,6 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 10807
+    m_Bits: 10803
   autofire: {fileID: 0}
   fov: 70
