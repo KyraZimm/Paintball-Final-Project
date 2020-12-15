@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            /*
             List<PathNode> closedNodes = GameManager.Instance.closedNodes;
             //check whether marker is overlapping obstacle
             for (int i = 0; i < closedNodes.Count; i++)
@@ -74,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 }
             }
+            */
             return true;
         }
         

@@ -24,10 +24,8 @@ public class GameManager : MonoBehaviour
   
 	void Start()
 	{
-		Instance = this;
-		
 		//initialize pathfinding
-		pathfinder = new Pathfinding(20, 11);
+		pathfinder = new Pathfinding(53, 30);
 	}
 
 	void Update()
