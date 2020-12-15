@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
+            ShowPath(FetchPlannedPath(markerPosition));
+            /*
             if (MarkerInBounds(markerPosition))
             { 
                 ShowPath(FetchPlannedPath(markerPosition));
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
                 marker.ResetPosition();
             }
             Debug.Log(MarkerInBounds(markerPosition));
+            */
         }
         
         if (Input.GetMouseButton(1))
