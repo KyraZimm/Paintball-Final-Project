@@ -11,6 +11,7 @@
           <e p="FieldOfView.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Grid.cs" t="Include" />
+          <e p="HealthBarScript.cs" t="Include" />
           <e p="MovementMarker.cs" t="Include" />
           <e p="PaintballBehaviour.cs" t="Include" />
           <e p="Pathfinding.cs" t="Include" />
