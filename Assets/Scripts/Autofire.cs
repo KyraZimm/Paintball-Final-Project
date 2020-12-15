@@ -11,15 +11,16 @@ public class Autofire : MonoBehaviour
 	[SerializeField] float damage;
 	[SerializeField] float accuracy;
 	[SerializeField] float cover;
+	[SerializeField] Sprite deathSprite;
 	Autofire damageSource;
-	bool isDead;
+	public bool isDead;
 	public bool isFiring;
 
 	public float visibleTime;
 	
 	//paintball asset - Kyra
 	public GameObject paintball;
-	
+  
 	public void SetVisible()
 	{
 		visibleTime = 3f;
@@ -55,8 +56,46 @@ public class Autofire : MonoBehaviour
 		if (hp <= 0)
 		{
 			isDead = true;
+			if (tag == "Player")
+			{
+				GameObject[] playerCharacters = GameObject.FindGameObjectsWithTag("Player");
+				bool isAnybodyAliveOutThere = false;
+				foreach (GameObject playerCharacter in playerCharacters)
+				{
+					if (!playerCharacter.GetComponent<Autofire>().isDead)
+					{
+						isAnybodyAliveOutThere = true;
+						break;
+					}
+				}
+				if (!isAnybodyAliveOutThere)
+				{
+					GameManager.gameManager.Lose();
+				}
+			}
+			if (tag == "Enemy")
+			{
+				GameObject[] enemyCharacters = GameObject.FindGameObjectsWithTag("Enemy");
+				bool isAnybodyAliveOutThere = false;
+				foreach (GameObject playerCharacter in enemyCharacters)
+				{
+					if (!playerCharacter.GetComponent<Autofire>().isDead)
+					{
+						isAnybodyAliveOutThere = true;
+						break;
+					}
+				}
+				if (!isAnybodyAliveOutThere)
+				{
+					GameManager.gameManager.Win();
+				}
+			}
+
+
+
 			Destroy(fov);
-			Destroy(gameObject);
+			GetComponent<SpriteRenderer>().sprite = deathSprite;
+			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 		}
 	}
 

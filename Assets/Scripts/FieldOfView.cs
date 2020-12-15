@@ -49,14 +49,6 @@ public class FieldOfView : MonoBehaviour
 		bool hit = false;
 		Vector3 firstTargetVertex;
 		GameObject firstTarget;
-
-		/*// hide enemies in fog of war when not found
-		
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-		foreach(GameObject e in enemies)
-		{
-			e.layer = LayerMask.NameToLayer("BehindMask");
-		}*/
 		
 
 		for (int i = 0; i <= rayCount; i++)

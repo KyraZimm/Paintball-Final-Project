@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	public static GameManager gameManager;
+
 	private Pathfinding pathfinder;
 
 	private bool checkedObstacles = false;
 	public bool isPaused = false;
-	public List<PathNode> closedNodes = new List<PathNode>();
-	
-	public static GameManager Instance { get; private set; }
+	public List<PathNode> closedNodes;
+
+	[SerializeField] GameObject youLose;
+	[SerializeField] GameObject youWin;
+
+	void Awake()
+	{
+		gameManager = this;
+	}
+  
 	void Start()
 	{
 		Instance = this;
@@ -22,6 +32,22 @@ public class GameManager : MonoBehaviour
 
 	void Update()
 	{
+
+		// pause game
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Debug.Log("space pressed");
+			isPaused = !isPaused;
+			if (isPaused)
+			{
+				Time.timeScale = 0f;
+			}
+			else if (!isPaused)
+			{
+				Time.timeScale = 1f;
+			}
+		}
+
 
 		//check to see where obstacles are on map, and mark those as nodes to skip
 		if (!checkedObstacles)
@@ -62,7 +88,6 @@ public class GameManager : MonoBehaviour
 
 			checkedObstacles = true;
 
-
 		}
 
 		/*
@@ -81,21 +106,7 @@ public class GameManager : MonoBehaviour
             }
         }*/
 
-
-		// pause game
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-
-			isPaused = !isPaused;
-			if (isPaused)
-			{
-				Time.timeScale = 0f;
-			}
-			else if (!isPaused)
-			{
-				Time.timeScale = 1f;
-			}
-		}
+		
 	}
 
 	//mouse position functions
@@ -119,4 +130,19 @@ public class GameManager : MonoBehaviour
 		return worldPosition;
 	}
 
+
+	public void Lose()
+	{
+		youLose.SetActive(true);
+		Time.timeScale = 0f;
+	}
+	public void Win()
+	{
+		youWin.SetActive(true);
+		Time.timeScale = 0f;
+	}
+	public void Restart()
+	{
+		SceneManager.LoadScene(0);
+	}
 }
