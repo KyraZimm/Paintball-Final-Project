@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
 	private bool checkedObstacles = false;
 	public bool isPaused = false;
-	public List<PathNode> closedNodes;
+	public List<PathNode> closedNodes = new List<PathNode>();
 
 	[SerializeField] GameObject youLose;
 	[SerializeField] GameObject youWin;
@@ -24,10 +24,8 @@ public class GameManager : MonoBehaviour
   
 	void Start()
 	{
-		Instance = this;
-		
 		//initialize pathfinding
-		pathfinder = new Pathfinding(20, 11);
+		pathfinder = new Pathfinding(53, 30);
 	}
 
 	void Update()

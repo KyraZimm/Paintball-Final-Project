@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +35,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
+            try
+            {
+                ShowPath(FetchPlannedPath(markerPosition));
+            }
+            catch(NullReferenceException e)
+			{
+
+			}
+            catch (IndexOutOfRangeException e)
+            {
+
+            }
+
+
+
+            /*
             if (MarkerInBounds(markerPosition))
             { 
                 ShowPath(FetchPlannedPath(markerPosition));
@@ -43,17 +60,42 @@ public class PlayerMovement : MonoBehaviour
                 marker.ResetPosition();
             }
             Debug.Log(MarkerInBounds(markerPosition));
+            */
         }
         
         if (Input.GetMouseButton(1))
         {
-            ClearPath();
-            SetTargetPosition(markerPosition);
+            try
+            {
+                ClearPath();
+                SetTargetPosition(markerPosition);
+            }
+            catch (NullReferenceException e)
+            {
+
+            }
+            catch (IndexOutOfRangeException e)
+            {
+
+            }
+          
         }
         
         HandleMovement();
     }
+    bool isMarkerHittingObstacle()
+    {
+        RaycastHit hit;
+        bool isObstacle = false;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+		{
+            Debug.Log("found " + hit.collider.gameObject.name + " at distance: " + hit.distance);
+            isObstacle = hit.collider.gameObject.tag == "Obstacle";
+        }
 
+        return isObstacle;
+    }
     private bool MarkerInBounds(Vector3 markerPos)
     {
         
@@ -64,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            /*
             List<PathNode> closedNodes = GameManager.Instance.closedNodes;
             //check whether marker is overlapping obstacle
             for (int i = 0; i < closedNodes.Count; i++)
@@ -74,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 }
             }
+            */
             return true;
         }
         

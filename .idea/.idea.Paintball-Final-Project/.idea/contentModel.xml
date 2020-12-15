@@ -8,14 +8,18 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Autofire.cs" t="Include" />
+          <e p="BarMove.cs" t="Include" />
           <e p="FieldOfView.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Grid.cs" t="Include" />
+          <e p="HealthBarScript.cs" t="Include" />
+          <e p="InstructionButton.cs" t="Include" />
           <e p="MovementMarker.cs" t="Include" />
           <e p="PaintballBehaviour.cs" t="Include" />
           <e p="Pathfinding.cs" t="Include" />
           <e p="PathNode.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
+          <e p="StartButton.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

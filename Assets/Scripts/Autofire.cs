@@ -7,7 +7,7 @@ public class Autofire : MonoBehaviour
 {
 	[SerializeField] GameObject fov;
 	[SerializeField] LayerMask layerMask;
-	[SerializeField] float hp;
+	[SerializeField] public float hp;
 	[SerializeField] float damage;
 	[SerializeField] float accuracy;
 	[SerializeField] float cover;
@@ -95,6 +95,7 @@ public class Autofire : MonoBehaviour
 
 			Destroy(fov);
 			GetComponent<SpriteRenderer>().sprite = deathSprite;
+			GetComponent<Animator>().enabled = false;
 			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 		}
 	}
@@ -118,12 +119,16 @@ public class Autofire : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		fov.GetComponent<FieldOfView>().SetOrigin(transform.position);
-		fov.GetComponent<FieldOfView>().SetAimDirection(transform.eulerAngles);
+		if (fov!=null)
+		{
+			fov.GetComponent<FieldOfView>().SetOrigin(transform.position);
+			fov.GetComponent<FieldOfView>().SetAimDirection(transform.eulerAngles);
+		}
+		
 		//Debug.Log(isFiring);
 
 		// masking
-		if (gameObject.tag == "Enemy")
+		if (gameObject.tag == "Enemy" && !isDead)
 		{
 			if (visibleTime > 0)
 			{
