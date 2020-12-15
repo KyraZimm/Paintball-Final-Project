@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
@@ -10,6 +11,7 @@ public class FieldOfView : MonoBehaviour
 	float startingAngle;
 	public float fov = 70f;
 	Vector3 origin;
+	
 	Vector3 GetVectorFromAngle(float angle)
 	{
 		// angle = 0 -> 360
@@ -75,6 +77,9 @@ public class FieldOfView : MonoBehaviour
 							firstTarget = raycastHit2D.collider.gameObject;
 							firstTargetVertex = vertex;
 							autofire.Fire(firstTargetVertex, firstTarget);
+							
+							//Kyra:
+							autofire.PaintballTrail(firstTarget, true);
 						}
 						raycastHit2D.collider.gameObject.GetComponent<Autofire>().SetVisible(); // take the enemy out of fog of war when found
 						
@@ -90,6 +95,9 @@ public class FieldOfView : MonoBehaviour
 							firstTarget = raycastHit2D.collider.gameObject;
 							firstTargetVertex = vertex;
 							autofire.Fire(firstTargetVertex, firstTarget);
+							
+							//Kyra:
+							autofire.PaintballTrail(firstTarget, false);
 						}
 						
 					}

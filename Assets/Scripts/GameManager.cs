@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 	public static GameManager gameManager;
 
 	private Pathfinding pathfinder;
-	private PlayerMovement player;
 
 	private bool checkedObstacles = false;
 	public bool isPaused = false;
@@ -22,16 +21,13 @@ public class GameManager : MonoBehaviour
 	{
 		gameManager = this;
 	}
+  
 	void Start()
 	{
+		Instance = this;
+		
 		//initialize pathfinding
 		pathfinder = new Pathfinding(20, 11);
-
-		//locate player
-		player = GameObject.Find("Player").GetComponent<PlayerMovement>();
-
-		//function to check for obstacles, take them out of pathfinding
-
 	}
 
 	void Update()
@@ -64,12 +60,24 @@ public class GameManager : MonoBehaviour
 			{
 				for (int y = 0; y < pathfinder.GetGrid().GetHeight(); y++)
 				{
+					//raycast upwards
 					RaycastHit2D checkObstacleUp = Physics2D.Raycast(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.up * distToEdge, obstacles);
 					Debug.DrawRay(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.up * distToEdge, Color.red, 100f);
 
-					Debug.Log(checkObstacleUp.collider);
+					//raycast to the right
+					RaycastHit2D checkObstacleRight = Physics2D.Raycast(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.right * distToEdge, obstacles);
+					Debug.DrawRay(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.right * distToEdge, Color.red, 100f);
 
-					if (checkObstacleUp.collider != null)
+					//raycast down
+					RaycastHit2D checkObstacleDown= Physics2D.Raycast(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.down * distToEdge, obstacles);
+					Debug.DrawRay(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.down * distToEdge, Color.red, 100f);
+					
+					//raycast left
+					RaycastHit2D checkObstacleLeft = Physics2D.Raycast(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.left * distToEdge, obstacles);
+					Debug.DrawRay(new Vector2(((x * cellSize) + distToEdge), ((y * cellSize) + distToEdge)), Vector2.left * distToEdge, Color.red, 100f);
+					
+					//check  raycast results
+					if (checkObstacleUp.collider != null || checkObstacleDown.collider != null || checkObstacleRight.collider != null || checkObstacleLeft.collider != null)
 					{
 						pathfinder.GetNode(x, y).isWalkable = false;
 						Debug.Log("pathnode " + x + ", " + y + " is not walkable");
