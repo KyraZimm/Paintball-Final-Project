@@ -428,7 +428,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &308024429
 RectTransform:
@@ -1140,6 +1140,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3923007532807824824, guid: 58f21d59419299048b3366ebc4c80765,
+        type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 421079280}
     - target: {fileID: 5427931298798082324, guid: 58f21d59419299048b3366ebc4c80765,
         type: 3}
       propertyPath: m_LocalPosition.x

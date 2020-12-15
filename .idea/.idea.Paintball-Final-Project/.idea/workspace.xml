@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92e5cace-2add-4511-899a-0195597d627c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/KyraTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KyraTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Autofire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Autofire.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovementMarker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovementMarker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PaintballBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PaintballBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,13 +44,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Grid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PathNode.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Pathfinding.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TestDragScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MovementMarker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Autofire.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PaintballBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PaintballBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MovementMarker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
       </list>
     </option>
   </component>
@@ -128,7 +128,7 @@
       <workItem from="1607021644332" duration="802000" />
       <workItem from="1607379819449" duration="640000" />
       <workItem from="1607568165764" duration="13330000" />
-      <workItem from="1607982982935" duration="3285000" />
+      <workItem from="1607982982935" duration="8728000" />
     </task>
     <servers />
   </component>

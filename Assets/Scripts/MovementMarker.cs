@@ -22,29 +22,15 @@ public class MovementMarker : MonoBehaviour, IDragHandler
     void Update()
     {
         player.markerPosition = draggedRectTransform.transform.position;
-      
+
     }
     
     public void OnDrag(PointerEventData eventData)
     {
-        //draggedRectTransform.anchoredPosition = eventData.position;
-
-        
         draggedRectTransform.anchoredPosition = UnscaleEventDelta(eventData.position);
-        Debug.Log("event data: " + eventData.position);
-        
-        //print("event data: " + eventData.position);
-        //print("marker data: " + draggedRectTransform.anchoredPosition);
-
-        /*
-        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetPosition.Normalize();
-        draggedRectTransform.anchoredPosition = targetPosition;
-        */
-        
-        
-
     }
+    
+    
     
     public Vector3 UnscaleEventDelta(Vector3 vec)
     {
@@ -57,9 +43,14 @@ public class MovementMarker : MonoBehaviour, IDragHandler
 
         Vector3 tempPosition = (vec / ratio);
         Vector3 finalPosition = Camera.main.ScreenToViewportPoint(tempPosition);
-        
-        Debug.Log("temporary position: " + tempPosition + ", mouse position: " + Input.mousePosition + ", final position: " + finalPosition);
 
         return tempPosition;
+    }
+
+
+    public void ResetPosition()
+    {
+        Vector2 newPos = Camera.main.WorldToScreenPoint(player.transform.position);
+        draggedRectTransform.anchoredPosition = UnscaleEventDelta(newPos);
     }
 }

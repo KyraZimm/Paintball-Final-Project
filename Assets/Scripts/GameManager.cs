@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviour
 	private bool checkedObstacles = false;
 	public bool isPaused = false;
 	public List<PathNode> closedNodes = new List<PathNode>();
+	
+	public static GameManager Instance { get; private set; }
 	void Start()
 	{
+		Instance = this;
+		
 		//initialize pathfinding
 		pathfinder = new Pathfinding(20, 11);
 	}
