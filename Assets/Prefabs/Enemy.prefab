@@ -145,10 +145,13 @@ MonoBehaviour:
   fov: {fileID: 169029322315711047, guid: 8dae7d3834d269d40ba70b3c752f59bb, type: 3}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1591
+    m_Bits: 1587
   hp: 100
   damage: 20
   accuracy: 0.5
   cover: 0
+  deathSprite: {fileID: 0}
   isDead: 0
   isFiring: 0
+  visibleTime: 0
+  paintball: {fileID: 0}

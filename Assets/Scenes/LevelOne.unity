@@ -493,11 +493,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Team Player (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 6212878295283254983, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9e6edfbc4c8eb49a1ac8a64190f200, type: 3}
 --- !u!1 &289987913
@@ -691,38 +686,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2721c16357bb943478c3bb310b8dfa78, type: 3}
---- !u!1 &322813437 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8327007305594232548, guid: 2721c16357bb943478c3bb310b8dfa78,
-    type: 3}
-  m_PrefabInstance: {fileID: 322813436}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &322813438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322813437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c881908a6d6b704297b32071695fd94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fov: {fileID: 169029322315711047, guid: 8dae7d3834d269d40ba70b3c752f59bb, type: 3}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 10807
-  hp: 10
-  damage: 1
-  accuracy: 0.8
-  cover: 0.2
-  deathSprite: {fileID: 21300000, guid: f2e6711789bad254db2bfe7f0b50f91a, type: 3}
-  isDead: 0
-  isFiring: 0
-  visibleTime: 0
-  paintball: {fileID: 9138367202521143671, guid: 1d058ba450605e94e962ceb7231f1cc4,
-    type: 3}
 --- !u!1001 &359216206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1056,7 +1019,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1729082105}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -1455,7 +1418,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &591311576
 RectTransform:
@@ -1569,11 +1532,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4688371887863429299, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6212878295283254976, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1633,11 +1591,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blue Team Player (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212878295283254983, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9e6edfbc4c8eb49a1ac8a64190f200, type: 3}
@@ -1992,11 +1945,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Team Player (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6212878295283254983, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9e6edfbc4c8eb49a1ac8a64190f200, type: 3}
 --- !u!1001 &864600171
@@ -2246,21 +2194,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 519420032}
     m_Modifications:
-    - target: {fileID: 2996552255419619768, guid: fce5084c42aee504c930cbd0a7b40b37,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2996552255419619768, guid: fce5084c42aee504c930cbd0a7b40b37,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2996552255419619768, guid: fce5084c42aee504c930cbd0a7b40b37,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2996552255419619769, guid: fce5084c42aee504c930cbd0a7b40b37,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2315,16 +2248,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2996552255419619769, guid: fce5084c42aee504c930cbd0a7b40b37,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 43.186028
-      objectReference: {fileID: 0}
-    - target: {fileID: 2996552255419619769, guid: fce5084c42aee504c930cbd0a7b40b37,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 24.665398
       objectReference: {fileID: 0}
     - target: {fileID: 2996552255419619770, guid: fce5084c42aee504c930cbd0a7b40b37,
         type: 3}
@@ -2584,11 +2507,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blue Team Player (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212878295283254983, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9e6edfbc4c8eb49a1ac8a64190f200, type: 3}
@@ -2906,7 +2824,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1729082105}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -3919,14 +3837,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 126980537, guid: 2721c16357bb943478c3bb310b8dfa78, type: 3}
-      propertyPath: hp
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 126980537, guid: 2721c16357bb943478c3bb310b8dfa78, type: 3}
-      propertyPath: damage
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8327007305594232547, guid: 2721c16357bb943478c3bb310b8dfa78,
         type: 3}
       propertyPath: m_LocalPosition.x
