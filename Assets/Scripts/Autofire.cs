@@ -7,7 +7,7 @@ public class Autofire : MonoBehaviour
 {
 	[SerializeField] GameObject fov;
 	[SerializeField] LayerMask layerMask;
-	[SerializeField] float hp;
+	[SerializeField] public float hp;
 	[SerializeField] float damage;
 	[SerializeField] float accuracy;
 	[SerializeField] float cover;
