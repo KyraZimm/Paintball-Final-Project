@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +35,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            ShowPath(FetchPlannedPath(markerPosition));
+            try
+            {
+                ShowPath(FetchPlannedPath(markerPosition));
+            }
+            catch(NullReferenceException e)
+			{
+
+			}
+            catch (IndexOutOfRangeException e)
+            {
+
+            }
+
+
+
             /*
             if (MarkerInBounds(markerPosition))
             { 
@@ -50,13 +65,37 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetMouseButton(1))
         {
-            ClearPath();
-            SetTargetPosition(markerPosition);
+            try
+            {
+                ClearPath();
+                SetTargetPosition(markerPosition);
+            }
+            catch (NullReferenceException e)
+            {
+
+            }
+            catch (IndexOutOfRangeException e)
+            {
+
+            }
+          
         }
         
         HandleMovement();
     }
+    bool isMarkerHittingObstacle()
+    {
+        RaycastHit hit;
+        bool isObstacle = false;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+		{
+            Debug.Log("found " + hit.collider.gameObject.name + " at distance: " + hit.distance);
+            isObstacle = hit.collider.gameObject.tag == "Obstacle";
+        }
 
+        return isObstacle;
+    }
     private bool MarkerInBounds(Vector3 markerPos)
     {
         
