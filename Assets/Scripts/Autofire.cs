@@ -123,7 +123,7 @@ public class Autofire : MonoBehaviour
 		//Debug.Log(isFiring);
 
 		// masking
-		if (gameObject.tag == "Enemy")
+		if (gameObject.tag == "Enemy" && !isDead)
 		{
 			if (visibleTime > 0)
 			{
