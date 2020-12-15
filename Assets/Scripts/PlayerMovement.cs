@@ -12,12 +12,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool movementAllowed = false;
 
+    public MovementMarker marker;
     public Vector3 markerPosition;
 
     private Vector2 groundHeight, groundWidth;
     
-
     private LineRenderer pathVisual;
+
 
     void Start()
     {
@@ -33,7 +34,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            ShowPath(FetchPlannedPath(markerPosition));
+            if (MarkerInBounds(markerPosition))
+            { 
+                ShowPath(FetchPlannedPath(markerPosition));
+            }
+            else
+            {
+                marker.ResetPosition();
+            }
+            Debug.Log(MarkerInBounds(markerPosition));
         }
         
         if (Input.GetMouseButton(1))
@@ -45,17 +54,29 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
     }
 
-    private bool CheckMarkerBoundaries(Vector3 markerPos)
+    private bool MarkerInBounds(Vector3 markerPos)
     {
-        //check whether marker is off-screen
-        if (markerPos.x >= groundWidth.y || markerPos.x <= groundWidth.y || markerPos.y >= groundHeight.y || markerPos.y <= groundHeight.x)
+        
+       //check whether marker is off-screen
+        if (markerPos.x >= groundWidth.y || markerPos.x <= groundWidth.x || markerPos.y >= groundHeight.y || markerPos.y <= groundHeight.x)
         {
             return false;
         }
         else
         {
+            List<PathNode> closedNodes = GameManager.Instance.closedNodes;
+            //check whether marker is overlapping obstacle
+            for (int i = 0; i < closedNodes.Count; i++)
+            {
+                if (markerPos.x >= closedNodes[i].x*.5f && markerPos.x <= closedNodes[i].x*.05f + 0.5f && markerPos.y >= closedNodes[i].y*.5f && markerPos.y <= closedNodes[i].y*.5f + 0.5f)
+                {
+                    return false;
+                    break;
+                }
+            }
             return true;
         }
+        
     }
 
     private void HandleMovement()

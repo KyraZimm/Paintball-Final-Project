@@ -16,7 +16,11 @@ public class Autofire : MonoBehaviour
 	public bool isDead;
 	public bool isFiring;
 
-	float visibleTime;
+	public float visibleTime;
+	
+	//paintball asset - Kyra
+	public GameObject paintball;
+  
 	public void SetVisible()
 	{
 		visibleTime = 3f;
@@ -29,6 +33,15 @@ public class Autofire : MonoBehaviour
 		transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		// target receives damage
 		DealDamage(target.GetComponent<Autofire>());
+	}
+	
+	//Kyra:
+	public void PaintballTrail(GameObject target, bool isPlayerFiring)
+	{
+		GameObject newPaintball = Instantiate(paintball, gameObject.transform.position,
+			Quaternion.identity);
+		newPaintball.GetComponent<PaintballBehaviour>().target = target;
+		newPaintball.GetComponent<PaintballBehaviour>().isPlayerFiring = isPlayerFiring;
 	}
 
 	public void DealDamage(Autofire target)
@@ -100,10 +113,6 @@ public class Autofire : MonoBehaviour
 			fov.GetComponent<MeshRenderer>().enabled = false;
 			fov.layer = LayerMask.NameToLayer("BehindMask");
 		}
-
-
-
-
 	}
 
 	// Update is called once per frame
