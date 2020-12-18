@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -87,11 +88,6 @@ public class Pathfinding
                continue;
             }
 
-            if (neighborNode == null)
-            {
-               Debug.Log("pathnode b will be null");
-            }
-
             int tentativeGCost = currentNode.gCost + CalculateDistanceCost(currentNode, neighborNode);
             if (tentativeGCost < neighborNode.gCost)
             {
@@ -119,17 +115,17 @@ public class Pathfinding
       {
          neighborList.Add(GetNode(currentNode.x - 1, currentNode.y));
          if (currentNode.y - 1 >= 0) neighborList.Add(GetNode(currentNode.x - 1, currentNode.y - 1));
-         if (currentNode.y + 1 < grid.GetHeight()) neighborList.Add(GetNode(currentNode.x - 1, currentNode. y + 1));
+         if (currentNode.y + 1 <= grid.GetHeight()) neighborList.Add(GetNode(currentNode.x - 1, currentNode. y + 1));
       }
 
       if (currentNode.x + 1 < grid.gridArray.GetLength(0))
       {
          neighborList.Add(GetNode(currentNode.x + 1, currentNode.y));
          if (currentNode.y - 1 >= 0) neighborList.Add(GetNode(currentNode.x + 1, currentNode.y - 1));
-         if (currentNode.y + 1 < grid.GetWidth()) neighborList.Add(GetNode(currentNode.x + 1, currentNode. y + 1));
+         if (currentNode.y + 1 <= grid.GetWidth()) neighborList.Add(GetNode(currentNode.x + 1, currentNode. y + 1));
       }
       if (currentNode.y - 1 >= 0) neighborList.Add(GetNode(currentNode.x, currentNode.y - 1));
-      if (currentNode.y + 1 < grid.GetHeight()) neighborList.Add(GetNode(currentNode.x, currentNode.y + 1));
+      if (currentNode.y + 1 <= grid.GetHeight()) neighborList.Add(GetNode(currentNode.x, currentNode.y + 1));
 
       return neighborList;
    }

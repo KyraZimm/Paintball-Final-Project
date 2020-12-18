@@ -158,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopMoving()
     {
+        currentPathIndex = 0;
         playerPath.Clear();
     }
 

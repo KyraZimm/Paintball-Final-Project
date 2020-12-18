@@ -433,6 +433,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3710814057008139897, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
+        type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 1703329983}
     - target: {fileID: 6212878295283254976, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1556,6 +1561,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3710814057008139897, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
+        type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 2143472752}
     - target: {fileID: 6212878295283254976, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1909,6 +1919,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1608777684, guid: ab9e6edfbc4c8eb49a1ac8a64190f200, type: 3}
+      propertyPath: hp
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710814057008139897, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
+        type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 2143472752}
     - target: {fileID: 6212878295283254976, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2628,6 +2647,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3710814057008139897, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
+        type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 1284660231}
     - target: {fileID: 6212878295283254976, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3239,6 +3263,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1608777684, guid: ab9e6edfbc4c8eb49a1ac8a64190f200, type: 3}
+      propertyPath: hp
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3710814057008139897, guid: ab9e6edfbc4c8eb49a1ac8a64190f200,
         type: 3}
       propertyPath: marker
