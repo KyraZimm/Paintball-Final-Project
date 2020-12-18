@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1024364751850589692}
   - component: {fileID: -2595384161256639386}
   - component: {fileID: -1835009182392775081}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Paintball
   m_TagString: Untagged
   m_Icon: {fileID: 0}

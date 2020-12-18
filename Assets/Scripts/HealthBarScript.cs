@@ -6,8 +6,6 @@ public class HealthBarScript : MonoBehaviour
 {
     public Autofire player;
     private float totalHP;
-
-    
     void Start()
     {
         player = GetComponentInParent<Autofire>();

@@ -119,7 +119,7 @@ MonoBehaviour:
   fov: {fileID: 169029322315711047, guid: 8dae7d3834d269d40ba70b3c752f59bb, type: 3}
   layerMask:
     serializedVersion: 2
-    m_Bits: 1591
+    m_Bits: 1587
   hp: 10
   damage: 2
   accuracy: 0.5

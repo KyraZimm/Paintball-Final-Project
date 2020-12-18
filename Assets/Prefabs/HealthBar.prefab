@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8034464266362686543}
-  m_Layer: 0
+  - component: {fileID: 1373657846}
+  m_Layer: 2
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,9 +24,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8034464266362686540}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0012988194, y: -0.46394214, z: -46.784733}
-  m_LocalScale: {x: 1.2989136, y: 1.3605341, z: 1.7089326}
+  m_LocalScale: {x: 1.2989137, y: 1.3605341, z: 1.7089326}
   m_Children:
   - {fileID: 8034464266724554715}
   - {fileID: 8034464267740006954}
@@ -33,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373657846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034464266362686540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c70cca8698b0c47a678bf8c4c29c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  offset: {x: 0, y: 0.4, z: 0}
 --- !u!1 &8034464266724554712
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8034464266724554715}
   - component: {fileID: 8034464266724554714}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8034464267740006954}
   - component: {fileID: 8034464267740006965}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BarBackground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8034464267745877358}
   - component: {fileID: 8034464267745877353}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BarSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8034464267991087126}
   - component: {fileID: 8034464267991087121}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,3 +335,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af92d27392b864c4d81309f58bf5942a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
