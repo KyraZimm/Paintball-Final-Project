@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     public MovementMarker marker;
     public Vector3 markerPosition;
+    private Autofire autofireHandling;
 
     private Vector2 groundHeight, groundWidth;
     
@@ -26,62 +28,60 @@ public class PlayerMovement : MonoBehaviour
         currentPos = transform.position;
         pathVisual = gameObject.GetComponent<LineRenderer>();
         
-        groundHeight = new Vector2(0, 5);
-        groundWidth = new Vector2(0, 10);
+        groundHeight = new Vector2(0, 25);
+        groundWidth = new Vector2(0, 45);
+
+        autofireHandling = GetComponent<Autofire>();
     }
 
    
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (!autofireHandling.isDead)
         {
-            try
-            {
-                ShowPath(FetchPlannedPath(markerPosition));
-            }
-            catch(NullReferenceException e)
-			{
-
-			}
-            catch (IndexOutOfRangeException e)
-            {
-
-            }
-
-
-
-            /*
-            if (MarkerInBounds(markerPosition))
-            { 
-                ShowPath(FetchPlannedPath(markerPosition));
-            }
-            else
-            {
-                marker.ResetPosition();
-            }
-            Debug.Log(MarkerInBounds(markerPosition));
-            */
-        }
         
-        if (Input.GetMouseButton(1))
-        {
-            try
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (MarkerInBounds(markerPosition) && !MarkerOverlappingObstacles(markerPosition))
+                {
+                    ShowPath(FetchPlannedPath(markerPosition));
+                }
+                else
+                {
+                    print("marker in bounds: " + MarkerInBounds(markerPosition));
+                    print("marker overlapping obstacle: " + MarkerOverlappingObstacles(markerPosition));
+                    ClearPath();
+                    marker.ResetPosition();
+                
+                    //show error message
+                }
+            }
+        
+            if (Input.GetMouseButton(1))
             {
                 ClearPath();
-                SetTargetPosition(markerPosition);
+                if (MarkerInBounds(markerPosition) && !MarkerOverlappingObstacles(markerPosition))
+                {
+                    SetTargetPosition(markerPosition);
+                }
+                else
+                {
+                    print("marker in bounds: " + MarkerInBounds(markerPosition));
+                    print("marker overlapping obstacle: " + MarkerOverlappingObstacles(markerPosition));
+                    marker.ResetPosition();
+                    
+                    //error message
+                }
             }
-            catch (NullReferenceException e)
-            {
-
-            }
-            catch (IndexOutOfRangeException e)
-            {
-
-            }
-          
+            
+            //make player move
+            HandleMovement();
+        }
+        else
+        {
+            //error message saying player is dead
         }
         
-        HandleMovement();
     }
     bool isMarkerHittingObstacle()
     {
@@ -106,21 +106,26 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            /*
-            List<PathNode> closedNodes = GameManager.Instance.closedNodes;
-            //check whether marker is overlapping obstacle
-            for (int i = 0; i < closedNodes.Count; i++)
-            {
-                if (markerPos.x >= closedNodes[i].x*.5f && markerPos.x <= closedNodes[i].x*.05f + 0.5f && markerPos.y >= closedNodes[i].y*.5f && markerPos.y <= closedNodes[i].y*.5f + 0.5f)
-                {
-                    return false;
-                    break;
-                }
-            }
-            */
             return true;
         }
         
+    }
+
+    private bool MarkerOverlappingObstacles(Vector3 markerPos)
+    {
+        
+        List<PathNode> closedNodes = GameManager.gameManager.closedNodes;
+        float cellSize = 0.8f;
+        //check whether marker is overlapping obstacle
+        for (int i = 0; i < closedNodes.Count; i++)
+        {
+            if (markerPos.x >= (closedNodes[i].x*cellSize) && markerPos.x <= (closedNodes[i].x*cellSize) + cellSize && markerPos.y >= (closedNodes[i].y*cellSize) && markerPos.y <= (closedNodes[i].y*cellSize) + cellSize)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void HandleMovement()
@@ -153,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopMoving()
     {
-        playerPath = null;
+        playerPath.Clear();
     }
 
     public Vector3 GetPosition() {
