@@ -18,8 +18,10 @@ public class Autofire : MonoBehaviour
 
 	public float visibleTime;
 	
-	//paintball asset - Kyra
+	//Kyra
 	public GameObject paintball;
+	private CounterScript enemyCounter;
+	private bool lowerCounter = false;
   
 	public void SetVisible()
 	{
@@ -114,6 +116,9 @@ public class Autofire : MonoBehaviour
 			fov.GetComponent<MeshRenderer>().enabled = false;
 			fov.layer = LayerMask.NameToLayer("BehindMask");
 		}
+		
+		//Kyra:
+		enemyCounter = GameObject.Find("Counter").GetComponent<CounterScript>();
 	}
 
 	// Update is called once per frame
@@ -139,6 +144,11 @@ public class Autofire : MonoBehaviour
 			{
 				gameObject.layer = LayerMask.NameToLayer("BehindMask"); // set to invisible
 			}
+		}
+		else if (gameObject.tag == "Enemy" && isDead && !lowerCounter) //Kyra
+		{
+			enemyCounter.enemies--;
+			lowerCounter = true;
 		}
 	}
 }
