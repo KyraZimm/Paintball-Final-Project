@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] GameObject youLose;
 	[SerializeField] GameObject youWin;
 
+	private Image pauseSign;
+
 	void Awake()
 	{
 		gameManager = this;
@@ -26,6 +29,9 @@ public class GameManager : MonoBehaviour
 	{
 		//initialize pathfinding
 		pathfinder = new Pathfinding(54, 31);
+
+		pauseSign = GameObject.Find("Pause").GetComponent<Image>();
+		pauseSign.enabled = false;
 	}
 
 	void Update()
@@ -39,10 +45,12 @@ public class GameManager : MonoBehaviour
 			if (isPaused)
 			{
 				Time.timeScale = 0f;
+				pauseSign.enabled = true;
 			}
 			else if (!isPaused)
 			{
 				Time.timeScale = 1f;
+				pauseSign.enabled = false;
 			}
 		}
 

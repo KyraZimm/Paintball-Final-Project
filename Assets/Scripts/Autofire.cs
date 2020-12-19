@@ -93,8 +93,6 @@ public class Autofire : MonoBehaviour
 				}
 			}
 
-
-
 			Destroy(fov);
 			GetComponent<SpriteRenderer>().sprite = deathSprite;
 			GetComponent<Animator>().enabled = false;

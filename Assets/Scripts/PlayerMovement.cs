@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //error message saying player is dead
+            Destroy(marker.gameObject);
         }
         
     }
