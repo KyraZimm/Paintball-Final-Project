@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (markerPos.x >= (closedNodes[i].x*cellSize) && markerPos.x <= (closedNodes[i].x*cellSize) + cellSize && markerPos.y >= (closedNodes[i].y*cellSize) && markerPos.y <= (closedNodes[i].y*cellSize) + cellSize)
             {
+                Debug.Log("cell called: " + closedNodes[i].x + ", " + closedNodes[i].y);
                 return true;
             }
         }

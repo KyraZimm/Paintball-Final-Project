@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="92e5cace-2add-4511-899a-0195597d627c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Paintball-Final-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthBarScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HealthBarScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LevelOne.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LevelOne.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +59,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Autofire.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CounterScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HealthBarScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" />
       </list>
     </option>
   </component>
@@ -140,7 +141,8 @@
       <workItem from="1607982982935" duration="20664000" />
       <workItem from="1608042034770" duration="1324000" />
       <workItem from="1608319591413" duration="8837000" />
-      <workItem from="1608365283991" duration="3272000" />
+      <workItem from="1608365283991" duration="3445000" />
+      <workItem from="1608405770561" duration="1984000" />
     </task>
     <servers />
   </component>
