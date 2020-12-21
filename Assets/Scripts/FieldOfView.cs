@@ -122,8 +122,6 @@ public class FieldOfView : MonoBehaviour
 
 		autofire.isFiring = hit;
 		
-
-
 		mesh.vertices = vertices;
 		mesh.uv = uv;
 		mesh.triangles = triangles;

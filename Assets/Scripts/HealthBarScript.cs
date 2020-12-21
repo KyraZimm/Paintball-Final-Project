@@ -8,7 +8,6 @@ public class HealthBarScript : MonoBehaviour
     private float totalHP;
     void Start()
     {
-        player = GetComponentInParent<Autofire>();
         totalHP = player.hp;
     }
 

@@ -94,13 +94,21 @@ public class Grid<TGridObject>
    public TGridObject GetGridObj(int x, int y)
    {
       if (x >= 0 && y >= 0 && x <= width && y <= height)
-      {
-         return gridArray[x, y];
-      }
-      else
-      {
-         return default(TGridObject);
-      }
+         {
+            try
+            {
+               return gridArray[x, y];
+            }
+            catch (Exception e)
+            {
+               Debug.Log("x: " + x + ", y: " + y);
+               return default(TGridObject);
+            }
+         }
+         else
+         {
+            return default(TGridObject);
+         }
    }
 
    public TGridObject GetGridObj(Vector3 worldPosition)
