@@ -58,6 +58,7 @@ public class Autofire : MonoBehaviour
 		if (hp <= 0)
 		{
 			isDead = true;
+			isFiring = false;
 			if (tag == "Player")
 			{
 				GameObject[] playerCharacters = GameObject.FindGameObjectsWithTag("Player");
