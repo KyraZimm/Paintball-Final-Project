@@ -79,32 +79,39 @@ public class Pathfinding
          openList.Remove(currentNode);
          closedList.Add(currentNode);
 
-         foreach (PathNode neighborNode in GetNeighborList(currentNode))
-         {
-            if (closedList.Contains(neighborNode)) continue;
-            if (!neighborNode.isWalkable)
-            {
-               closedList.Add(neighborNode);
-               continue;
-            }
+			foreach (PathNode neighborNode in GetNeighborList(currentNode))
+			{
+				if (closedList.Contains(neighborNode))
+				{
+					continue;
+				}
+				if (neighborNode != null && !neighborNode.isWalkable)
+				{
+					closedList.Add(neighborNode);
+					continue;
+				}
+				if (currentNode != null && neighborNode != null)
+				{
+					int tentativeGCost = currentNode.gCost + CalculateDistanceCost(currentNode, neighborNode);
 
-            int tentativeGCost = currentNode.gCost + CalculateDistanceCost(currentNode, neighborNode);
-            if (tentativeGCost < neighborNode.gCost)
-            {
-               neighborNode.cameFromNode = currentNode;
-               neighborNode.gCost = tentativeGCost;
-               neighborNode.hCost = CalculateDistanceCost(neighborNode, endNode);
-               neighborNode.CalculateFCost();
 
-               if (!openList.Contains(neighborNode))
-               {
-                  openList.Add(neighborNode);
-               }
-            }
-         }
-      }
+					if (tentativeGCost < neighborNode.gCost)
+					{
+						neighborNode.cameFromNode = currentNode;
+						neighborNode.gCost = tentativeGCost;
+						neighborNode.hCost = CalculateDistanceCost(neighborNode, endNode);
+						neighborNode.CalculateFCost();
 
-      return null;
+						if (!openList.Contains(neighborNode))
+						{
+							openList.Add(neighborNode);
+						}
+					}
+				}
+			}
+		}
+
+		return null;
    }
 
    private List<PathNode> GetNeighborList(PathNode currentNode)

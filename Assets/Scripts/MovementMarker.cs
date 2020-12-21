@@ -50,7 +50,12 @@ public class MovementMarker : MonoBehaviour, IDragHandler
 
     public void ResetPosition()
     {
-        Vector2 newPos = Camera.main.WorldToScreenPoint(player.transform.position);
-        draggedRectTransform.anchoredPosition = UnscaleEventDelta(newPos);
+        if (player != null)
+		{
+            Vector2 newPos = Camera.main.WorldToScreenPoint(player.transform.position);
+            draggedRectTransform.anchoredPosition = UnscaleEventDelta(newPos);
+        }
+            
+
     }
 }
