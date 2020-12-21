@@ -147,7 +147,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1587
   hp: 100
-  damage: 20
+  damage: 40
   accuracy: 0.5
   cover: 0
   deathSprite: {fileID: 0}

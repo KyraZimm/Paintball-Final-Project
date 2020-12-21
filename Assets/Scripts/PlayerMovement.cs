@@ -51,7 +51,11 @@ public class PlayerMovement : MonoBehaviour
                     print("marker in bounds: " + MarkerInBounds(markerPosition));
                     print("marker overlapping obstacle: " + MarkerOverlappingObstacles(markerPosition));
                     ClearPath();
-                    marker.ResetPosition();
+                    if (marker!=null)
+					{
+                        marker.ResetPosition();
+                    }
+                    
                 
                     //show error message
                 }
